@@ -1,0 +1,41 @@
+/*
+IMPORTANT CONTEXT
+If you are using this code in your own project, the FOR LOOP & ACCOMPANYING IF STATEMENTS are NOT NECESSARY. That block of code is necessary for the project I pulled this code from. The Design Lab project utilizes TEXT & PATH elements, so an if statement is needed to notify the function which type of element to apply the rotation to. Two separate sliders exists in the DOM (one in the text editor panel, one in the art editor panel), but they both use the same function. 
+
+One other note: The "elemArray" lines are also not needed, as these lines of code are passing numbers into an array that reflects the # of degrees the element has been rotated. As the user toggles between elements in the DOM, the editor panel updates to reflect the selected element's settings, based on information passed into the array.
+
+The variable "viewBox" is exclusive to my project. Use your own element id there.
+*/
+
+//SLIDER TO OUTPUT ROTATION
+function outputRange() {
+let slider;
+let output;
+
+    //DETERMINE WHICH ROTATION CONTROLS TO CALL (TEXT OR ART)
+    for(let i = 1; i <= elementCount; i++) {
+        if(focus == "text" + i) {
+            slider = document.getElementById('textRotation');
+            output = document.getElementById('range');
+
+        } else if(focus == "art" + i) {
+            slider = document.getElementById('artRotation');
+            output = document.getElementById('range2');
+        }
+    }
+
+    slider.oninput = function() {
+        output.value = slider.value;
+        let rotation = "rotate(" + output.value + "deg)";
+        document.getElementById(viewBox).style.transform = rotation;
+        elemArray[index][2] = output.value;
+
+    }
+
+    output.oninput = function() {
+        slider.value = output.value;
+        let rotation = "rotate(" + output.value + "deg)";
+        document.getElementById(viewBox).style.transform = rotation;
+        elemArray[index][2] = output.value;
+    }
+}
