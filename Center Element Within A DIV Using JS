@@ -1,0 +1,31 @@
+/*
+IMPORTANT CONTEXT
+I wrote this function to be used in the Design Lab project I'm currently working on, but regardless of context, the steps are generally the same:
+
+1. Get the dimensions of the DIV you wish to center an element in.
+2. Get the dimensions of the ELEMENT you wish to center.
+3. Calculate the centerline of your parent DIV by dividing it's WIDTH by 2. 
+4. You'll also need to calculate the proper offset for the ELEMENT, otherwise JS will reposition the element so that the left-most side is on the centerline. To do this, simply
+  divide the element's width by 2. 
+5. You then calculate the element's TRUE "centered" position in the DIV, by subtracting the OFFSET from the CENTERLINE. Setting the element's "left" value to this will
+  snap the element to the parent DIV's center (horizontally, that is). Alternatively, if you wanted to perform this function VERTICALLY, simply use "HEIGHT" for your
+  dimensional calculations, and then set the new value to the element's TOP attribute instead of LEFT. 
+  
+ADD'L: In my project, this function fires when the user clicks a "Center Element" button in the DOM.  
+ */ 
+
+//SNAP TO CENTER LINE FUNCTION
+function centerElement() {
+    const maxPrintArea = document.getElementById('printArea'); //GET MAX PRINT AREA
+    let elmt = document.getElementById(viewBox); //GET ELEMENT TO BE CENTERED
+    const dims = maxPrintArea.getBoundingClientRect(); //GET MAX PRINT AREA DIMENSIONS
+    let elmtDims = elmt.getBoundingClientRect(); //GET DIMENSIONS OF ELEMENT TO BE CENTERED
+    const centerLine = dims.width / 2; //FIND CENTERLINE
+    let elemWidth = elmtDims.width; //GET ELEMENT'S WIDTH
+    let offset = elemWidth / 2; //CALCULATE OFFSET RELATIVE TO CENTERLINE
+    let newX = centerLine - offset; //CALCULATE NEW X POSITION FOR ELEMENT
+    
+    //CENTER ELEMENT
+    document.getElementById(viewBox).style.left = newX + "px";
+
+}
