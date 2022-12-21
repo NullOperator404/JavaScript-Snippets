@@ -1,6 +1,5 @@
 /*
-This function will also work for flipping elements vertically. Simply change the "-1" in the transform to the second number instead: scale(1, -1)
-A translate() is also needed because without it, the element will be flipped outside of it's bounding box. The translate() function respositions the element inside the box. The pixel dimensions here should be = to the width of the SVG's canvas. In this case, 130px.
+A translate() is needed because without it, the element will be flipped outside of it's bounding box. The translate() function respositions the element inside the box. The pixel dimensions here should be = to the width of the SVG's canvas. In this case, 130px.
 A boolean var is needed to check whether the element has been flipped or not. By default, it is set to "false," meaning the element has not been flipped. When flipped, the var is set to true, so if the user clicks the button again the function will simply restore the element's original scaling.
 
 */
