@@ -1,0 +1,55 @@
+/*
+THIS IS A BLOCK OF CODE I WROTE THAT CHECKS THE TYPE OF FILE A USER HAS UPLOADED VIA THE <INPUT> ELEMENT IN THE DOM.
+*/
+
+function userUpload() {
+    let fileType;
+    //GET FILENAME
+    let userFile = file.files[0].name;
+    //SPLIT FILENAME & FILETYPE
+    let fileArray = userFile.split("");
+
+    //CONSTRUCT FILE TYPE
+    let lastChar = fileArray.length - 1; //GET INDEX OF FINAL CHARACTER
+    let secChar = fileArray.length - 3; //GET INDEX OF SECOND CHARACTER OF FILETYPE
+    let firstChar = fileArray.length - 4; //GET INDEX OF FIRST CHARACTER OF FILETYPE
+    let thirdChar = fileArray.length - 2; //GET INDEX OF THIRD CHARACTER OF FILETYPE (JPEG)
+    //IS FILE OF AI TYPE?
+    if(fileArray[lastChar] == "i") {
+        fileType = fileArray[thirdChar] + fileArray[lastChar];
+        console.log(fileType);
+    //IS FILE OF JPEG TYPE?
+    } else if(fileArray[thirdChar] == "e") {
+        fileType = fileArray[firstChar] + fileArray[secChar] + fileArray[thirdChar] + fileArray[lastChar];
+        console.log(fileType);
+    } else {
+    //FOR ALL OTHERS, USE LAST THREE CHARACTERS IN ARRAY
+        fileType = fileArray[secChar] + fileArray[thirdChar] + fileArray[lastChar];
+        console.log(fileType);
+    }
+
+    //IS FILETYPE BROWSER SAFE?
+    switch (fileType) {
+        case "psd":
+        console.log("No.");
+        break;
+
+        case "pdf":
+        console.log("No");
+        break;
+
+        case "ai":
+        console.log("No");
+        break;
+
+        case "eps":
+        console.log("No");
+        break;
+
+        case "cdr":
+        console.log("No");
+        break;
+
+        default:
+        console.log("Bypass PHP and insert file into DOM.");
+    }
